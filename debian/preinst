@@ -1,0 +1,14 @@
+#!/bin/sh
+
+SCRIPT_BASENAME="meld_compare.py"
+
+# Script paths
+TARGET_SCRIPT="/usr/share/nautilus-python/extensions/${SCRIPT_BASENAME}"
+BACKUP_SCRIPT="${TARGET_SCRIPT}.backup"
+
+# Check if the target script already exists (from a previous installation)
+if [ -f "$TARGET_SCRIPT" ]; then
+    echo "Updating the ${SCIRPT_BASENAME} script."
+    mv "$TARGET_SCRIPT" "${BACKUP_SCRIPT}"
+fi
+

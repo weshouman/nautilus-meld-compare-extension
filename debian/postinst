@@ -1,21 +1,5 @@
 #!/bin/sh
 
-SCRIPT_BASENAME="meld_compare.py"
-
-# Script paths
-TARGET_SCRIPT="/usr/share/nautilus-python/extensions/${SCIRPT_BASENAME}"
-NEW_SCRIPT="${TARGET_SCRIPT}.new"
-BACKUP_SCRIPT="${TARGET_SCRIPT}.backup"
-
-# Check if the target script already exists (from a previous installation)
-if [ -f "$TARGET_SCRIPT" ]; then
-    echo "Updating the ${SCIRPT_BASENAME} script."
-    mv "$TARGET_SCRIPT" "${BACKUP_SCRIPT}"
-fi
-
-# Rename the new script to the target script
-mv "$NEW_SCRIPT" "$TARGET_SCRIPT"
-
 # Inform the user to restart Nautilus
 echo "Please restart Nautilus to apply the changes. You can do this by running 'nautilus -q' in your terminal."
 
