@@ -17,7 +17,6 @@ class MeldExtension(GObject.GObject, Nautilus.MenuProvider):
             self.left_file = file
 
     def get_file_items(self, files):
-        print(GObject._version)
         items = []
 
         if len(files) == 1:
