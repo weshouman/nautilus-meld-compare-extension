@@ -1,10 +1,13 @@
-Package: nautilus-meld-diff-extension
-Version: 1.0
+Source: nautilus-meld-compare-extension
 Section: utils
 Priority: optional
+Maintainer: Walid Shouman <eng.walidshouman@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 4.5.0
+
+Package: nautilus-meld-compare-extension
 Architecture: all
 Depends: nautilus, python3, python3-nautilus, meld
-Maintainer: Walid Shouman <eng.walidshouman@gmail.com>
 Description: A Nautilus extension for file comparison using Meld
  This extension integrates Meld into Nautilus, allowing users
  to compare files and directories directly from the Nautilus file manager.

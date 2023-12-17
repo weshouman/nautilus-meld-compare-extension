@@ -1,0 +1,8 @@
+nautilus-meld-compare-extension (1.0) unstable; urgency=low
+
+  * Initial release of the extension.
+  * Added functionality to compare files using Meld.
+  * Implemented context menu integration in Nautilus.
+
+ -- Walid Shouman <eng.walidshouman@gmail.com>  Sun, 17 Dec 2023 20:00:00 +0000
+

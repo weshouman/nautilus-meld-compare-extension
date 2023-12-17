@@ -1,0 +1,12 @@
+# debian/rules would use this Makefile if named so over the default debuild
+# make targets, thus we should avoid naming this file Makefile
+
+build_init:
+	docker build -t debian-package-builder .
+
+build_run: # builds in a docker container and output to the ./out/ dir
+	mkdir -p $$(pwd)/out
+	docker run --rm -v $$(pwd)/out:/pkg debian-package-builder
+
+build_clean:
+	docker rm debian-package-builder
