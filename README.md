@@ -1,5 +1,7 @@
 # Nautilus Meld Extension
 
+![Compare  two selected files](docs/media/select-two-files.png)
+
 ## Overview
 
 This Nautilus extension allows us to easily compare files and directories using the Meld comparison tool directly from the Nautilus context menu. The extension adds new menu items that let us set a "left" file or directory for comparison and then compare a "right" file or directory against it.
