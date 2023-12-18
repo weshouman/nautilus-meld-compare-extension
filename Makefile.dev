@@ -13,4 +13,4 @@ build_debug: # run a bash into the container for debugging
 	docker run -it --rm -v $$(pwd)/out:/pkg debian-package-builder /bin/bash
 
 build_clean:
-	docker rm debian-package-builder
+	docker rmi debian-package-builder
