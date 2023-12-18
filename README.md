@@ -1,10 +1,12 @@
 # Nautilus Meld Extension
 
-![Compare  two selected files](docs/media/select-two-files.png)
+[![Build Debian Package](https://github.com/weshouman/nautilus-meld-compare-extension/actions/workflows/build-deb.yml/badge.svg)](https://github.com/weshouman/nautilus-meld-compare-extension/actions/workflows/build-deb.yml)
 
 ## Overview
 
 This Nautilus extension allows us to easily compare files and directories using the Meld comparison tool directly from the Nautilus context menu. The extension adds new menu items that let us set a "left" file or directory for comparison and then compare a "right" file or directory against it.
+
+![Compare  two selected files](docs/media/select-two-files.png)
 
 ## Features
 
@@ -25,10 +27,10 @@ This Nautilus extension allows us to easily compare files and directories using 
 
 ### Steps
 
-1. Download the `nautilus-meld-diff-extension.deb` package.
+1. Download the `nautilus-meld-compare-extension.deb` package.
 2. Install the package:
     ```bash
-    sudo dpkg -i nautilus-meld-diff-extension.deb
+    sudo dpkg -i nautilus-meld-compare-extension.deb
     ```
 3. You may need to resolve dependencies:
     ```bash
