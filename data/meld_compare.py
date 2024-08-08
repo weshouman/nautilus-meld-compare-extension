@@ -23,8 +23,9 @@ class MeldExtension(GObject.GObject, Nautilus.MenuProvider):
         else:
             self.left_file = file
 
-    def get_file_items(self, files):
+    def get_file_items(self, *args):
         items = []
+        files = args[-1]
 
         if len(files) == 1:
             file = files[0]
