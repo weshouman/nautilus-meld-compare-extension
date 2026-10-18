@@ -1,3 +1,10 @@
+nautilus-meld-compare-extension (1.1.0) unstable; urgency=high
+
+  * Add support for the Meld flatpak as a fallback.
+  * Launch Meld without a shell (security fix, reported by RISE FX GmbH).
+
+ -- Walid Shouman <eng.walidshouman@gmail.com>  Sun, 18 Oct 2026 23:25:36 +0000
+
 nautilus-meld-compare-extension (1.0) unstable; urgency=low
 
   * Initial release of the extension.
