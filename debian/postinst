@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Inform the user to restart Nautilus
-echo "Please restart Nautilus to apply the changes. You can do this by running 'nautilus -q' in your terminal."
-
