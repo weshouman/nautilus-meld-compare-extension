@@ -1,4 +1,4 @@
-import os
+import shutil
 import subprocess
 from gi.repository import Nautilus, GObject
 
@@ -9,13 +9,18 @@ class MeldExtension(GObject.GObject, Nautilus.MenuProvider):
         self.left_dir = None
 
     def menu_activate_cb(self, menu, file1, file2):
-        try:
-            outp = subprocess.check_output(["which", "meld"])
-            os.system(f"meld \"{file1}\" \"{file2}\" &")
-        except Exception as _ex:
+        # Pass paths as argv entries, never through a shell, so filenames
+        # containing $(), backticks or ; are not interpreted (CWE-78)
+        if shutil.which("meld"):
+            cmd = ["meld", file1, file2]
+        else:
             print("cannot find meld")
             # fallback to flatpak
-            os.system(f"flatpak run org.gnome.meld \"{file1}\" \"{file2}\" &")
+            cmd = ["flatpak", "run", "org.gnome.meld", file1, file2]
+        try:
+            subprocess.Popen(cmd, start_new_session=True)
+        except OSError as ex:
+            print(f"cannot launch meld: {ex}")
 
     def set_left_cb(self, menu, file, is_directory):
         if is_directory:
