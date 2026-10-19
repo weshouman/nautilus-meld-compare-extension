@@ -2,33 +2,62 @@ name: Build Debian Package
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+    tags:
+      - 'v*'
   pull_request:
-    branches: [ master ]
+    branches: [master]
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - name: Install Dependencies
-      run: sudo apt-get update && sudo apt-get install -y build-essential lintian devscripts debhelper
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential lintian devscripts debhelper
 
-    - name: Build DEB Package
-      run: |
-        debuild -us -uc
-        mv ../*.deb .
+      - name: Build DEB Package
+        run: |
+          debuild -us -uc
+          mv ../*.deb .
 
-    - name: Lintian
-      run: lintian *.deb
+      - name: Lintian
+        run: lintian *.deb
 
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: deb-package
-        path: "*.deb"
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-package
+          path: "*.deb"
+          if-no-files-found: error
 
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download Debian Package
+        uses: actions/download-artifact@v4
+        with:
+          name: deb-package
+          path: dist
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: dist/*.deb
+          fail_on_unmatched_files: true
+          generate_release_notes: true
